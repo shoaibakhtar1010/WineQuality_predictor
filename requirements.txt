@@ -10,3 +10,6 @@ sklearn
 tox
 pytest
 flake8
+flask
+gunicorn
+pyYAML
