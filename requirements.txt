@@ -1,5 +1,12 @@
+#local [package install
+-e .
+
+#third party package install
 dvc
 dvc[gdrive]
 numpy
 pandas
 sklearn
+tox
+pytest
+flake8
