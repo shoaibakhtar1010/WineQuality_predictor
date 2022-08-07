@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from concurrent.futures.thread import _threads_queues
 from distutils.command.config import config
 from msilib import schema
@@ -5,6 +6,9 @@ from pyexpat import model
 from urllib import response
 from attr import validate
 from sklearn.metrics import confusion_matrix
+=======
+
+>>>>>>> dev
 import yaml
 import os
 import json
@@ -12,23 +16,39 @@ import joblib
 import numpy as np
 
 params_path="params.yaml"
+<<<<<<< HEAD
 schema_path=os.path.join("predicion_service","schema_in.json")
+=======
+schema_path=os.path.join("prediction_service","schema_in.json")
+>>>>>>> dev
 
 
 class NotInRange(Exception):
     def __init__(self,message="value entered are not in range"):
             self.message=message
+<<<<<<< HEAD
             super.__init__(self.message)
 
+=======
+            super().__init__(self.message)
+>>>>>>> dev
 
 class NotInColumn(Exception):
     def __init__(self,message="Not in features"):
             self.message=message
+<<<<<<< HEAD
             super.__init__(self.message)
 
 def read_params(config_path=params_path):
     with open(config_path) as yaml_file:
         config= yaml.safe_load(config_path)
+=======
+            super().__init__(self.message)
+
+def read_params(config_path=params_path):
+    with open(config_path) as yaml_file:
+        config= yaml.safe_load(yaml_file)
+>>>>>>> dev
     return config
 
 def predict(data):
@@ -84,6 +104,7 @@ def form_response(dict_request):
 def api_response(dict_request):
     try:
         if validate_input(dict_request):
+<<<<<<< HEAD
             data=np.array([list(dict_request.values())])
             response=predict(data)
             response=  {"response": response}
@@ -93,3 +114,22 @@ def api_response(dict_request):
         return response
 
 
+=======
+            data = np.array([list(dict_request.values())])
+            response = predict(data)
+            response = {"response": response}
+            return response
+            
+    except NotInRange as e:
+        response = {"the_expected_range": get_schema(), "response": str(e) }
+        return response
+
+    except NotInColumn as e:
+        response = {"the_expected_cols": get_schema().keys(), "response": str(e) }
+        return response
+
+
+    except Exception as e:
+        response = {"response": str(e) }
+        return response
+>>>>>>> dev
