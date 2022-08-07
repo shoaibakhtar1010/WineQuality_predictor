@@ -1,10 +1,4 @@
-from concurrent.futures.thread import _threads_queues
-from distutils.command.config import config
-from msilib import schema
-from pyexpat import model
-from urllib import response
-from attr import validate
-from sklearn.metrics import confusion_matrix
+
 import yaml
 import os
 import json
@@ -27,7 +21,7 @@ class NotInColumn(Exception):
 
 def read_params(config_path=params_path):
     with open(config_path) as yaml_file:
-        config= yaml.safe_load(config_path)
+        config= yaml.safe_load(yaml_file)
     return config
 
 def predict(data):
@@ -92,7 +86,7 @@ def api_response(dict_request):
         response = {"the_exected_range": get_schema(), "response": str(e) }
         return response
 
-    except NotInCols as e:
+    except NotInColumn as e:
         response = {"the_exected_cols": get_schema().keys(), "response": str(e) }
         return response
 
