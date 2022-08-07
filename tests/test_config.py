@@ -76,6 +76,6 @@ def test_api_response_incorrect_range(data=input_data["incorrect_range"]):
 
 def test_api_response_incorrect_column(data=input_data["incorrect_col"]):
     res=api_response(data)
-    assert res["response"] == prediction_service.prediction.NotInColumn().message
+    assert res["response"] == prediction_service.prediction.NotInCols().message
 
 
